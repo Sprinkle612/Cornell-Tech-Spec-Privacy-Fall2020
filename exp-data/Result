@@ -1,0 +1,38 @@
+# NYT
+treatment group
+visit_id
+1    190
+2    168
+3    118
+
+control group
+visit_id
+1    186
+2     47
+3     80
+
+# Washington
+treatment
+visit_id
+1    202
+2    197
+3     73
+
+control
+visit_id
+1    190
+2     39
+3     69
+
+# Forbes
+treatment
+visit_id
+1    204
+2    153
+3    225
+
+control
+visit_id
+1    189
+2    100
+3    226
