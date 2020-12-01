@@ -1,3 +1,6 @@
+------
+EXP 1
+------
 # NYT
 treatment group
 visit_id
@@ -36,3 +39,86 @@ visit_id
 1    189
 2    100
 3    226
+
+------
+EXP 2
+------
+# NYT
+treatment
+visit_id
+1    182
+2    158
+3    105
+
+control
+visit_id
+1    196
+2     45
+3    101
+
+# Washington
+treatment
+visit_id
+1    178
+2    131
+3     69
+
+control
+visit_id
+1    149
+2    104
+3     70
+
+# Forbes
+treatment
+visit_id
+1    141
+2    160
+3    223
+
+control
+visit_id
+1    191
+2     49
+3    218
+
+------
+EXP 3
+------
+# NYT
+treatment
+1    174
+2    258
+3     98
+
+control
+visit_id
+1    193
+2     59
+3     84
+
+# Washington
+treatment
+visit_id
+1    197
+2    221
+3     98
+
+control
+visit_id
+1    185
+2    128
+3     95
+
+# Forbes
+treatment
+visit_id
+1    175
+2    211
+3    216
+
+control
+visit_id
+1    195
+2     61
+3    223
