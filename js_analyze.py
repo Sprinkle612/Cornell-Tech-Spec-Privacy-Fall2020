@@ -116,6 +116,7 @@ def process_cookie_from_js(third_party_js_script):
     third_party_get_cookie = defaultdict(set)
 
     for index, row in third_party_js_script_cookie_operations.iterrows():
+        base_script_url = get_base_script_url(row['script_url'])
         if row['value'] is None:
             continue
         if row["operation"] == "set":
@@ -123,13 +124,13 @@ def process_cookie_from_js(third_party_js_script):
                 if cookie_value == None or cookie_name in INSIGNIFICANT_COOKIE_LS:
                     continue
                 third_party_set_cookie[row['first_party_host']].add(
-                    (row['script_host'], row['script_url'], cookie_name, cookie_value))
+                    (row['script_host'], base_script_url, cookie_name, cookie_value))
         elif row["operation"] == "get":
             for cookie_name, cookie_value in split_cookie_value(row["value"]):
                 if cookie_value == None or cookie_name in INSIGNIFICANT_COOKIE_LS:
                     continue
                 third_party_get_cookie[row['first_party_host']].add(
-                    (row['script_host'], row['script_url'], cookie_name, cookie_value))
+                    (row['script_host'], base_script_url, cookie_name, cookie_value))
 
     get_cookie_js = make_cookie_into_df(third_party_get_cookie)
     set_cookie_js = make_cookie_into_df(third_party_set_cookie)
@@ -241,28 +242,32 @@ def define_easyrule_trackers(script_url, is_third_party):
     easyprivacy_set = set()
     easylist_set = set()
     for url in script_url:
-        script_url = get_base_script_url(url)
-        if easylist_rule.should_block(script_url, {'script': True,
-                                                   'third-party': is_third_party}):
-            easylist_set.add(script_url)
-        if easyprivacy_rule.should_block(script_url, {'script': True,
-                                                      'third-party': is_third_party}):
-            easyprivacy_set.add(script_url)
+        base_url = get_base_script_url(url)
+        if easylist_rule.should_block(url, {'script': True,
+                                            'third-party': is_third_party}):
+            easylist_set.add(base_url)
+        if easyprivacy_rule.should_block(url, {'script': True,
+                                               'third-party': is_third_party}):
+            easyprivacy_set.add(base_url)
 
     return easylist_set, easyprivacy_set
 
 
 if __name__ == "__main__":
 
-    file_name = "forbes-c1"
+    file_name = "nyt-t1"
     sql_name = file_name + '.sqlite'
     print('----read third party js----')
     third_party_js = extract_third_party_js(sql_name)
-    easylist_set, easyprivacy_set = define_easyrule_trackers(
-        third_party_js.script_url, True)
-    print(easylist_set)
-    # print('----extract cookie info----')
-    # get_cookie_js, set_cookie_js = process_cookie_from_js(third_party_js)
-    # print('----save cookie----')
-    # save_df_to_csv(get_cookie_js, 'get_cookies_' + file_name)
-    # save_df_to_csv(set_cookie_js, 'set_cookies_' + file_name)
+    # easylistset = define_easyrule_trackers(third_party_js.script_url, True)
+    # print()
+    # easylist_set, easyprivacy_set = define_easyrule_trackers(
+    #     third_party_js.script_url, True)
+    # print(easylist_set)
+    print('----extract cookie info----')
+    get_cookie_js, set_cookie_js = process_cookie_from_js(third_party_js)
+    print('get_cookie_js shape: ', get_cookie_js.shape)
+    print('set_cookie_js shape: ', set_cookie_js.shape)
+    print('----save cookie----')
+    save_df_to_csv(get_cookie_js, 'get_cookies_' + file_name)
+    save_df_to_csv(set_cookie_js, 'set_cookies_' + file_name)

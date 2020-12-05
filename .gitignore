@@ -2,6 +2,7 @@
 .DS_Store?
 *.sqlite
 *.zip
+*.csv
 ._*
 ._*
 __pycache__/

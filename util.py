@@ -15,7 +15,7 @@ def get_site(site_url):
 
 
 def extract_host_from_url(url_ls):
-    return list(map(lambda x: urlparse(x).netloc.split('.')[1], url_ls))
+    return list(map(lambda x: urlparse(x).netloc.split('.')[1] if len(urlparse(x).netloc.split('.')) > 1 else x, url_ls))
 
 
 def is_third_party(primary_host, secondary_host):
