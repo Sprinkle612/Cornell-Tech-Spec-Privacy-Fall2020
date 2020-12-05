@@ -122,3 +122,82 @@ visit_id
 1    195
 2     61
 3    223
+
+------
+EXP 4
+------
+# NYT
+treatment
+visit_id
+1    204
+2    225
+3    103
+
+control
+visit_id
+1    180
+2    107
+3    100
+
+# Washington
+treatment
+visit_id
+1    192
+2    206
+3     98
+
+control
+visit_id
+1    176
+2     37
+3     97
+
+# Forbes
+visit_id
+1    199
+2    188
+3    214
+
+control
+visit_id
+1    186
+2    139
+3    226
+
+------
+EXP 5
+------
+# NYT
+treatment
+visit_id
+1    178
+2    206
+3    103
+
+control
+visit_id
+1    198
+2    106
+3     68
+
+# Forbes
+visit_id
+1    187
+2    237
+3    227
+
+visit_id
+1    191
+2     72
+3    200
+
+# Washington
+visit_id
+1    215
+2    225
+3     92
+
+visit_id
+1    212
+2     43
+3     94
