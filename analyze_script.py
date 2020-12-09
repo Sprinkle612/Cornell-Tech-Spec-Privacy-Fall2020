@@ -7,13 +7,13 @@ import os
 
 data_path = "exp-data/"
 # %%
-conn_t = sqlite3.connect(data_path + "washington-t4.sqlite")
+conn_t = sqlite3.connect(data_path + "nyt-t1.sqlite")
 javascript_cookies_t = pd.read_sql_query(
     "select visit_id, record_type, change_cause, host, name, value, time_stamp from javascript_cookies;", conn_t)
 # %%
 javascript_cookies_t.groupby('visit_id')['name'].nunique()
 # %%
-conn_c = sqlite3.connect(data_path + "washington-c4.sqlite")
+conn_c = sqlite3.connect(data_path + "nyt-c1.sqlite")
 javascript_cookies_c = pd.read_sql_query(
     "select visit_id, record_type, change_cause, host, name, value, time_stamp from javascript_cookies;", conn_c)
 # %%

@@ -139,15 +139,13 @@ def process_cookie_from_js(third_party_js_script):
     return get_cookie_js, set_cookie_js
 
 
-def extract_third_party_js(file_name):
+def extract_third_party_js(conn):
     query = """SELECT sv.site_url, sv.visit_id,
         js.script_url, js.operation, js.arguments, js.symbol, js.value
         FROM javascript as js LEFT JOIN site_visits as sv
         ON sv.visit_id = js.visit_id WHERE
         js.script_url <> ''
         """
-
-    conn = sqlite3.connect(EXP_PATH+file_name)
     js = pd.read_sql_query(query, conn)
 
     js["first_party_host"] = list(map(lambda x: get_site(x), js["site_url"]))
@@ -253,12 +251,38 @@ def define_easyrule_trackers(script_url, is_third_party):
     return easylist_set, easyprivacy_set
 
 
+def clean_cookie_host(series):
+
+    def helper(x):
+        ls = x.strip('.').replace('.uk', '').replace('.au', '').split('.')
+        return ls[-2]
+    return list(map(lambda x: helper(x), series))
+
+
+def read_js_distinct_cookie(conn):
+    query = "select visit_id, record_type, change_cause, host, name, value, time_stamp from javascript_cookies;"
+    javascript_cookies = pd.read_sql_query(query, conn)
+    javascript_cookies['cleaned_host'] = clean_cookie_host(
+        javascript_cookies.host)
+    js_cookies_distinct = javascript_cookies[[
+        'visit_id', 'host', 'name', 'value', 'cleaned_host']].drop_duplicates()
+    return js_cookies_distinct
+
+
+def distinct_jsc_cookie_op_in_js(jsc, op_df):
+
+    merged = pd.merge(jsc, op_df, how='right', left_on=[
+                      'name', 'value'], right_on=['cookie_name', 'cookie_value'])
+    return merged
+
+
 if __name__ == "__main__":
 
     file_name = "nyt-t1"
     sql_name = file_name + '.sqlite'
+    conn = sqlite3.connect(sql_name)
     print('----read third party js----')
-    third_party_js = extract_third_party_js(sql_name)
+    third_party_js = extract_third_party_js(conn)
     # easylistset = define_easyrule_trackers(third_party_js.script_url, True)
     # print()
     # easylist_set, easyprivacy_set = define_easyrule_trackers(
@@ -268,6 +292,14 @@ if __name__ == "__main__":
     get_cookie_js, set_cookie_js = process_cookie_from_js(third_party_js)
     print('get_cookie_js shape: ', get_cookie_js.shape)
     print('set_cookie_js shape: ', set_cookie_js.shape)
-    print('----save cookie----')
-    save_df_to_csv(get_cookie_js, 'get_cookies_' + file_name)
-    save_df_to_csv(set_cookie_js, 'set_cookies_' + file_name)
+    print('----extract distinct cookie info from both jsc and js----')
+    js_cookies_distinct = read_js_distinct_cookie(conn)
+    set_merged = distinct_jsc_cookie_op_in_js(
+        js_cookies_distinct, set_cookie_js)
+    get_merged = distinct_jsc_cookie_op_in_js(
+        js_cookies_distinct, get_cookie_js)
+    # print('----save cookie----')
+    # save_df_to_csv(get_cookie_js, 'get_cookies_' + file_name)
+    # save_df_to_csv(set_cookie_js, 'set_cookies_' + file_name)
+    save_df_to_csv(set_merged, 'set_cookies_merged_' + file_name)
+    save_df_to_csv(get_merged, 'get_cookies_merged_' + file_name)
