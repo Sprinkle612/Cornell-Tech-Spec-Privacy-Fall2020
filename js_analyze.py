@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 import sqlite3
+import sys
+import os
 from urllib.parse import urlparse
 from adblockparser import AdblockRules
 from util import get_base_script_url, get_site, extract_host_from_url, is_third_party, save_df_to_csv
@@ -36,7 +38,7 @@ IMAGE_MIN_WIDTH = 16
 MIN_CANVAS_TEXT_LEN = 10
 COOKIE_READ_IN_JS = "window.document.cookie"
 
-INSIGNIFICANT_COOKIE = 'Test|test|lang|SameSite|Samesite|sameSite|samesite|expires|Path|path|domain|Expires|max-age'
+INSIGNIFICANT_COOKIE = 'Test|testWrite|test|lang|SameSite|Samesite|sameSite|samesite|expires|Path|path|domain|Expires|max-age'
 INSIGNIFICANT_COOKIE_LS = INSIGNIFICANT_COOKIE.split('|')
 
 
@@ -276,11 +278,22 @@ def distinct_jsc_cookie_op_in_js(jsc, op_df):
     return merged
 
 
-if __name__ == "__main__":
+def merge_set_get_df(set_df, get_df):
+    set_df['type'] = ['set'] * set_df.shape[0]
+    get_df['type'] = ['get'] * get_df.shape[0]
+    result = pd.concat([set_df, get_df])
+    return result
 
-    file_name = "nyt-t1"
+
+if __name__ == "__main__":
+    # type name without sqlite
+    file_name = sys.argv[1]
     sql_name = file_name + '.sqlite'
-    conn = sqlite3.connect(sql_name)
+    # if not os.path.exists(EXP_PATH+sql_name):
+    #     print("File not found")
+    #     pass
+
+    conn = sqlite3.connect(EXP_PATH + sql_name)
     print('----read third party js----')
     third_party_js = extract_third_party_js(conn)
     # easylistset = define_easyrule_trackers(third_party_js.script_url, True)
@@ -298,8 +311,14 @@ if __name__ == "__main__":
         js_cookies_distinct, set_cookie_js)
     get_merged = distinct_jsc_cookie_op_in_js(
         js_cookies_distinct, get_cookie_js)
+    print('----set and get-----')
+    print('merged_set shape:', set_merged.shape)
+    print('merged_get shape:', get_merged.shape)
+    print("----saved get&set together----")
+    all_merged = merge_set_get_df(set_merged, get_merged)
+    save_df_to_csv(all_merged, "merged_" + file_name)
     # print('----save cookie----')
     # save_df_to_csv(get_cookie_js, 'get_cookies_' + file_name)
     # save_df_to_csv(set_cookie_js, 'set_cookies_' + file_name)
-    save_df_to_csv(set_merged, 'set_cookies_merged_' + file_name)
-    save_df_to_csv(get_merged, 'get_cookies_merged_' + file_name)
+    # save_df_to_csv(set_merged, 'set_cookies_merged_' + file_name)
+    # save_df_to_csv(get_merged, 'get_cookies_merged_' + file_name)
