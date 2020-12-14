@@ -285,22 +285,11 @@ def merge_set_get_df(set_df, get_df):
     return result
 
 
-if __name__ == "__main__":
-    # type name without sqlite
-    file_name = sys.argv[1]
-    sql_name = file_name + '.sqlite'
-    # if not os.path.exists(EXP_PATH+sql_name):
-    #     print("File not found")
-    #     pass
-
+def extract_setget_activities(exp_type, exp_group, exp_num):
+    sql_name = exp_type + "-" + exp_group + str(exp_num) + '.sqlite'
+    print(sql_name)
     conn = sqlite3.connect(EXP_PATH + sql_name)
-    print('----read third party js----')
     third_party_js = extract_third_party_js(conn)
-    # easylistset = define_easyrule_trackers(third_party_js.script_url, True)
-    # print()
-    # easylist_set, easyprivacy_set = define_easyrule_trackers(
-    #     third_party_js.script_url, True)
-    # print(easylist_set)
     print('----extract cookie info----')
     get_cookie_js, set_cookie_js = process_cookie_from_js(third_party_js)
     print('get_cookie_js shape: ', get_cookie_js.shape)
@@ -311,12 +300,60 @@ if __name__ == "__main__":
         js_cookies_distinct, set_cookie_js)
     get_merged = distinct_jsc_cookie_op_in_js(
         js_cookies_distinct, get_cookie_js)
-    print('----set and get-----')
     print('merged_set shape:', set_merged.shape)
     print('merged_get shape:', get_merged.shape)
     print("----saved get&set together----")
     all_merged = merge_set_get_df(set_merged, get_merged)
-    save_df_to_csv(all_merged, "merged_" + file_name)
+    all_merged['exp_type'] = [exp_type] * all_merged.shape[0]
+    all_merged['exp_group'] = [exp_group] * all_merged.shape[0]
+    all_merged['exp_index'] = [exp_num] * all_merged.shape[0]
+    return all_merged
+
+
+if __name__ == "__main__":
+    exp_types = ['nyt', 'forbes', 'washington']
+    exp_groups = ['t', 'c']
+    big_tables = []
+    for i in range(1, 7):
+        for t in exp_types:
+            for g in exp_groups:
+                df = extract_setget_activities(t, g, i)
+                big_tables.append(df)
+
+    result = pd.concat(big_tables)
+    save_df_to_csv(result, 'get_set_cookies')
+
+    # type name without sqlite
+    # file_name = sys.argv[1]
+    # sql_name = file_name + '.sqlite'
+    # # if not os.path.exists(EXP_PATH+sql_name):
+    # #     print("File not found")
+    # #     pass
+
+    # conn = sqlite3.connect(EXP_PATH + sql_name)
+    # print('----read third party js----')
+    # third_party_js = extract_third_party_js(conn)
+    # # easylistset = define_easyrule_trackers(third_party_js.script_url, True)
+    # # print()
+    # # easylist_set, easyprivacy_set = define_easyrule_trackers(
+    # #     third_party_js.script_url, True)
+    # # print(easylist_set)
+    # print('----extract cookie info----')
+    # get_cookie_js, set_cookie_js = process_cookie_from_js(third_party_js)
+    # print('get_cookie_js shape: ', get_cookie_js.shape)
+    # print('set_cookie_js shape: ', set_cookie_js.shape)
+    # print('----extract distinct cookie info from both jsc and js----')
+    # js_cookies_distinct = read_js_distinct_cookie(conn)
+    # set_merged = distinct_jsc_cookie_op_in_js(
+    #     js_cookies_distinct, set_cookie_js)
+    # get_merged = distinct_jsc_cookie_op_in_js(
+    #     js_cookies_distinct, get_cookie_js)
+    # print('----set and get-----')
+    # print('merged_set shape:', set_merged.shape)
+    # print('merged_get shape:', get_merged.shape)
+    # print("----saved get&set together----")
+    # all_merged = merge_set_get_df(set_merged, get_merged)
+    # save_df_to_csv(all_merged, "merged_" + file_name)
     # print('----save cookie----')
     # save_df_to_csv(get_cookie_js, 'get_cookies_' + file_name)
     # save_df_to_csv(set_cookie_js, 'set_cookies_' + file_name)

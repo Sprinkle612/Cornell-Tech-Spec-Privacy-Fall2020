@@ -1,0 +1,288 @@
+nyt-t1.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1545, 5)
+set_cookie_js shape:  (97, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (106, 10)
+merged_get shape: (1628, 10)
+----saved get&set together----
+nyt-c1.sqlite
+----extract cookie info----
+get_cookie_js shape:  (964, 5)
+set_cookie_js shape:  (55, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (61, 10)
+merged_get shape: (998, 10)
+----saved get&set together----
+forbes-t1.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1431, 5)
+set_cookie_js shape:  (72, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (77, 10)
+merged_get shape: (1478, 10)
+----saved get&set together----
+forbes-c1.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1017, 5)
+set_cookie_js shape:  (63, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (69, 10)
+merged_get shape: (1053, 10)
+----saved get&set together----
+washington-t1.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1471, 5)
+set_cookie_js shape:  (87, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (89, 10)
+merged_get shape: (1511, 10)
+----saved get&set together----
+washington-c1.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1139, 5)
+set_cookie_js shape:  (50, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (52, 10)
+merged_get shape: (1177, 10)
+----saved get&set together----
+nyt-t2.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1760, 5)
+set_cookie_js shape:  (102, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (111, 10)
+merged_get shape: (1873, 10)
+----saved get&set together----
+nyt-c2.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1168, 5)
+set_cookie_js shape:  (66, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (70, 10)
+merged_get shape: (1205, 10)
+----saved get&set together----
+forbes-t2.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1787, 5)
+set_cookie_js shape:  (114, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (122, 10)
+merged_get shape: (1834, 10)
+----saved get&set together----
+forbes-c2.sqlite
+----extract cookie info----
+get_cookie_js shape:  (920, 5)
+set_cookie_js shape:  (58, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (64, 10)
+merged_get shape: (958, 10)
+----saved get&set together----
+washington-t2.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1251, 5)
+set_cookie_js shape:  (64, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (66, 10)
+merged_get shape: (1284, 10)
+----saved get&set together----
+washington-c2.sqlite
+----extract cookie info----
+get_cookie_js shape:  (668, 5)
+set_cookie_js shape:  (46, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (48, 10)
+merged_get shape: (716, 10)
+----saved get&set together----
+nyt-t3.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1510, 5)
+set_cookie_js shape:  (110, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (121, 10)
+merged_get shape: (1626, 10)
+----saved get&set together----
+nyt-c3.sqlite
+----extract cookie info----
+get_cookie_js shape:  (978, 5)
+set_cookie_js shape:  (58, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (64, 10)
+merged_get shape: (1036, 10)
+----saved get&set together----
+forbes-t3.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1427, 5)
+set_cookie_js shape:  (83, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (88, 10)
+merged_get shape: (1466, 10)
+----saved get&set together----
+forbes-c3.sqlite
+----extract cookie info----
+get_cookie_js shape:  (949, 5)
+set_cookie_js shape:  (50, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (55, 10)
+merged_get shape: (988, 10)
+----saved get&set together----
+washington-t3.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1496, 5)
+set_cookie_js shape:  (78, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (80, 10)
+merged_get shape: (1532, 10)
+----saved get&set together----
+washington-c3.sqlite
+----extract cookie info----
+get_cookie_js shape:  (963, 5)
+set_cookie_js shape:  (53, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (55, 10)
+merged_get shape: (993, 10)
+----saved get&set together----
+nyt-t4.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1877, 5)
+set_cookie_js shape:  (94, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (101, 10)
+merged_get shape: (1963, 10)
+----saved get&set together----
+nyt-c4.sqlite
+----extract cookie info----
+get_cookie_js shape:  (890, 5)
+set_cookie_js shape:  (55, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (61, 10)
+merged_get shape: (925, 10)
+----saved get&set together----
+forbes-t4.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1470, 5)
+set_cookie_js shape:  (70, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (75, 10)
+merged_get shape: (1523, 10)
+----saved get&set together----
+forbes-c4.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1043, 5)
+set_cookie_js shape:  (55, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (60, 10)
+merged_get shape: (1082, 10)
+----saved get&set together----
+washington-t4.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1500, 5)
+set_cookie_js shape:  (79, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (83, 10)
+merged_get shape: (1599, 10)
+----saved get&set together----
+washington-c4.sqlite
+----extract cookie info----
+get_cookie_js shape:  (835, 5)
+set_cookie_js shape:  (48, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (50, 10)
+merged_get shape: (866, 10)
+----saved get&set together----
+nyt-t5.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1635, 5)
+set_cookie_js shape:  (120, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (126, 10)
+merged_get shape: (1692, 10)
+----saved get&set together----
+nyt-c5.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1031, 5)
+set_cookie_js shape:  (60, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (64, 10)
+merged_get shape: (1070, 10)
+----saved get&set together----
+forbes-t5.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1612, 5)
+set_cookie_js shape:  (103, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (109, 10)
+merged_get shape: (1662, 10)
+----saved get&set together----
+forbes-c5.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1302, 5)
+set_cookie_js shape:  (85, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (89, 10)
+merged_get shape: (1341, 10)
+----saved get&set together----
+washington-t5.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1889, 5)
+set_cookie_js shape:  (90, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (92, 10)
+merged_get shape: (1931, 10)
+----saved get&set together----
+washington-c5.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1297, 5)
+set_cookie_js shape:  (60, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (62, 10)
+merged_get shape: (1363, 10)
+----saved get&set together----
+nyt-t6.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1332, 5)
+set_cookie_js shape:  (79, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (85, 10)
+merged_get shape: (1394, 10)
+----saved get&set together----
+nyt-c6.sqlite
+----extract cookie info----
+get_cookie_js shape:  (956, 5)
+set_cookie_js shape:  (56, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (62, 10)
+merged_get shape: (994, 10)
+----saved get&set together----
+forbes-t6.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1726, 5)
+set_cookie_js shape:  (108, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (114, 10)
+merged_get shape: (1766, 10)
+----saved get&set together----
+forbes-c6.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1195, 5)
+set_cookie_js shape:  (71, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (77, 10)
+merged_get shape: (1233, 10)
+----saved get&set together----
+washington-t6.sqlite
+----extract cookie info----
+get_cookie_js shape:  (1166, 5)
+set_cookie_js shape:  (59, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (61, 10)
+merged_get shape: (1203, 10)
+----saved get&set together----
+washington-c6.sqlite
+----extract cookie info----
+get_cookie_js shape:  (912, 5)
+set_cookie_js shape:  (49, 5)
+----extract distinct cookie info from both jsc and js----
+merged_set shape: (51, 10)
+merged_get shape: (972, 10)
+----saved get&set together----
