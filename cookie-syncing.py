@@ -109,9 +109,9 @@ def run_cookie_syncing_analysis(exp_type, exp_group, exp_index):
 
     # can tell wether referrer and url are different
     http_requests_syncs['referrer_host'] = list(
-        map(lambda x: urlparse(x).netloc, http_requests_syncs.referrer))
+        map(lambda x: extract_deep_clean_host(urlparse(x).netloc), http_requests_syncs.referrer))
     http_requests_syncs['is_diff_host'] = list(map(
-        lambda a, b: a != b, http_requests_syncs.host, http_requests_syncs.referrer_host))
+        lambda a, b: is_third_party(b, a), http_requests_syncs.host, http_requests_syncs.referrer_host))
 
     # different domain transmitting
     http_requests_syncs = http_requests_syncs[http_requests_syncs.is_diff_host]
@@ -169,7 +169,7 @@ def run_cookie_syncing_analysis(exp_type, exp_group, exp_index):
     http_requests_syncs['exp_index'] = [
         exp_index] * http_requests_syncs.shape[0]
     return http_requests_syncs
-#     print("-----------------")
+    print("-----------------")
 #     save_df_to_csv(http_requests_syncs, "cookie_syncs_" +file_name)
 
 
@@ -187,4 +187,4 @@ if __name__ == "__main__":
                 big_table.append(df)
 
     result = pd.concat(big_table)
-    save_df_to_csv(result, 'cookie_syncs')
+    save_df_to_csv(result, 'cookie_syncs_update')
