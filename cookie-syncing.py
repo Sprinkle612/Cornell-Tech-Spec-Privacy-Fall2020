@@ -6,7 +6,7 @@ import os
 import re
 from urllib.parse import urlparse
 
-# helper functions
+###### helper functions ######
 def get_host_from_headers(x):
     temp = x.replace('"','').split('],[')
     for t in temp:
@@ -22,8 +22,13 @@ def get_cookies_from_headers(x):
         if "Cookie" in ta:
             return ta[-1]
     return ''
+    
 def extract_host_from_url(url_ls):
     return list(map(lambda x: urlparse(x).netloc.split('.')[1] if len(urlparse(x).netloc.split('.')) > 1 else x, url_ls))
+
+def extract_deep_clean_host(url):
+    s = url.strip(".au").strip('.uk')
+    return s.split('.')[-2] if len(s.split('.')) > 1 else s
 
 def get_site(site_url):
     return site_url.split(".")[1]
@@ -36,9 +41,6 @@ def is_third_party(origin, url_host):
 def save_df_to_csv(df, file_name):
     df.to_csv(file_name+'.csv', index=False)
 
-def extract_deep_clean_host(url):
-    s = url.strip(".au").strip('.uk')
-    return s.split('.')[-2] if len(s.split('.')) > 1 else s
 
 
 def process(exp_type, exp_group, exp_index):
