@@ -47,6 +47,9 @@ def process(exp_type, exp_group, exp_index):
     cookies = cookies[["exp_type", "exp_group", "exp_index", "visit_id", "origin_site", "host", "name", "value", "is_third_party"]]
     cookies = cookies.drop_duplicates().reset_index(drop = True)
 
+    print(cookies.shape[0])
+    print(cookies[cookies.is_third_party].shape[0])
+    print(cookies[cookies.is_third_party & (cookies.visit_id == 3)].shape[0])
     return cookies
 
 
@@ -60,11 +63,11 @@ if __name__ == "__main__":
         for g in groups:
             for i in range(1, 7):
                 df = process(s, g, i)
+
                 big_table.append(df)
                 # save_df_to_csv(df, "cookie_syncs"+s+g+str(i))
 
-                print("%s-%s-%d completed" % (s,g,i))
-                print(df.shape[0])
+                print("%s-%s-%d completed\n\n" % (s,g,i))
 
     result = pd.concat(big_table)
     save_df_to_csv(result, 'distinct_cookies_update')
