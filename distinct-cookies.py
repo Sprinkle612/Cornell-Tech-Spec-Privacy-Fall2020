@@ -4,6 +4,9 @@ import sqlite3
 import sys
 import os
 
+# supress scientific exp for cookie values
+pd.set_option('display.float_format', '{:.2f}'.format)
+
 ###### helper functions ######
 
 def clean_host(host):
